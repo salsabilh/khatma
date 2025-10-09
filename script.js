@@ -31,8 +31,9 @@ createBoxes(leftGrid, 31, 60);
 
 // Reset all progress
 resetBtn.addEventListener("click", () => {
-  if (confirm("Are you sure you want to reset all progress?")) {
+  if (confirm("هل أنت متأكد أنك تريد إعادة تعيين كافة التقدم؟")) {
     localStorage.removeItem("khatmaProgress");
     document.querySelectorAll(".box").forEach(box => box.classList.remove("completed"));
   }
+
 });

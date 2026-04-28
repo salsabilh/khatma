@@ -8,6 +8,8 @@ body {
   min-height: 100vh;
 }
 
+
+
 .main {
   display: flex;
 }
@@ -20,6 +22,16 @@ body {
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   width: 90%;
   max-width: 1000px;
+  margin: auto;
+}
+
+.header-img {
+  width: 100%;       /* responsive */
+  height: auto;      /* keep proportions */
+  max-width: 1000px; /* optional: limit image size on big screens */
+  display: block;
+  margin: 0 auto;    /* center the image */
+  border-radius: 10px; /* optional, for beauty */
 }
 
 h1 {

@@ -52,17 +52,17 @@ h1 {
 
   }
 
-  .tracker {
-    flex-direction: column; /* optional: stack both sides */
-    flex-direction: row;   /* <-- ADD THIS */
 
-  }
+.tracker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
-
-
-.column {
-  flex: 1;
+.half {
+  flex: 1 1 400px;
+  max-width: 500px;
 }
 
 .grid {
@@ -110,7 +110,11 @@ h1 {
 footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 
 @media (max-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr); /* keep 3 per row */
+  .tracker {
+    flex-direction: column;
+  }
+
+  .half {
+    width: 100%;
   }
 }

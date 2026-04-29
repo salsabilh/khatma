@@ -1,5 +1,5 @@
-const mainGrid = document.getElementById("mainGrid");
-
+const firstHalf = document.getElementById("firstHalf");
+const secondHalf = document.getElementById("secondHalf");
 // Load saved progress from localStorage
 let savedProgress = JSON.parse(localStorage.getItem("khatmaProgress")) || {};
 
@@ -24,7 +24,8 @@ function createBoxes(grid, start, end) {
   }
 }
 
-createBoxes(mainGrid, 1, 60);
+createBoxes(firstHalf, 1, 30);
+createBoxes(secondHalf, 31, 60);
 
 // Reset all progress
 resetBtn.addEventListener("click", () => {

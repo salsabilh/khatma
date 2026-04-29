@@ -9,21 +9,33 @@
 <body>
 
   <div class="container">
-    <img class="header-img" src="prgm-khatm.jpg">
+<img class="header-img" src="prgm-khatm.jpg">
+    <!-- PROGRESS SYSTEM -->
+<div class="progress-section">
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <p id="progressText">0% completed</p>
+
+  <div class="stats">
+    <p>Completed: <span id="done">0</span></p>
+    <p>Remaining: <span id="left">60</span></p>
+    <p>🔥 Streak: <span id="streak">0</span> days</p>
+  </div>
+
+</div>
     <div class="tracker">
-<div class="tracker">
-
-  <div class="half">
-    <h2>💙 النصف الأول 💙</h2>
-    <div class="grid" id="firstHalf"></div>
-  </div>
-
-  <div class="half">
-    <h2>💙 النصف الثاني 💙</h2>
-    <div class="grid" id="secondHalf"></div>
-  </div>
-
-</div></div>
+      <div class="column left">
+        <h2>💙النصف الثاني💙</h2>
+        <div class="grid" id="leftGrid"></div>
+      </div>
+      <div class="column right">
+        
+        <h2>💙النصف الأول💙</h2>
+        <div class="grid" id="rightGrid"></div>
+      </div>
     </div><br><br>
     <button id="resetBtn"> إعادة تعيين الكل</button>
     <footer>
@@ -32,7 +44,6 @@
   </div>
 
   <script src="script.js"></script>
+  
 </body>
 </html>
-
-

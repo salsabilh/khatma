@@ -22,7 +22,7 @@ body {
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   width: 90%;
   max-width: 1000px;
-  
+
 }
 
 .header-img {
@@ -52,17 +52,17 @@ h1 {
 
   }
 
+  .tracker {
+    flex-direction: column; /* optional: stack both sides */
+    flex-direction: row;   /* <-- ADD THIS */
 
-.tracker {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+  }
 }
 
-.half {
-  flex: 1 1 400px;
-  max-width: 500px;
+
+
+.column {
+  flex: 1;
 }
 
 .grid {
@@ -109,12 +109,54 @@ h1 {
 /* Footer */
 footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 
-@media (max-width: 768px) {
-  .tracker {
-    flex-direction: column;
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
   }
+}
 
-  .half {
-    width: 100%;
+/* ===== PROGRESS BAR ===== */
+.progress-container {
+  width: 100%;
+  height: 12px;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #0066cc;
+  transition: width 0.5s ease;
+}
+
+/* ===== STATS ===== */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* ===== ANIMATIONS ===== */
+.box {
+  transition: all 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-3px);
+}
+
+.box.completed {
+  transform: scale(1.05);
+}
+
+/* MOBILE FIX FOR STATS */
+@media (max-width: 768px) {
+  .stats {
+    flex-direction: column;
+    gap: 10px;
   }
 }

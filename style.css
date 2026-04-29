@@ -110,7 +110,7 @@ h1 {
 footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 
 @media (max-width: 768px) {
-  .tracker {
-    flex-direction: column;
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* keep 3 per row */
   }
 }

@@ -22,7 +22,7 @@ body {
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   width: 90%;
   max-width: 1000px;
-  margin: auto;
+  
 }
 
 .header-img {
@@ -34,6 +34,7 @@ body {
   border-radius: 10px; /* optional, for beauty */
 }
 
+
 h1 {
   color: #0066cc;
   margin-bottom: 20px;
@@ -44,6 +45,21 @@ h1 {
   justify-content: space-between;
   gap: 30px;
 }
+
+@media (max-width: 768px) {
+  .header-img {
+    max-width: 100%;
+
+  }
+
+  .tracker {
+    flex-direction: column; /* optional: stack both sides */
+    flex-direction: row;   /* <-- ADD THIS */
+
+  }
+}
+
+
 
 .column {
   flex: 1;
@@ -90,5 +106,11 @@ h1 {
   background-color: #004c99;
 }
 
-/* RESPONSIVE */
+/* Footer */
+footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

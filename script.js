@@ -22,7 +22,7 @@ function createBoxes(grid, start, end) {
   const percent = Math.round((completed / total) * 100);
 
   progressBar.style.width = percent + "%";
-  progressText.textContent = percent + "% مكتمل";
+  progressText.textContent = percent + "% completed";
 
   doneEl.textContent = completed;
   leftEl.textContent = total - completed;

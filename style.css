@@ -109,7 +109,7 @@ h1 {
 /* Footer */
 footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 
-@media (max-width: 480px) {
+@media (max-width: 440px) {
   .grid {
     grid-template-columns: 2fr;
   }

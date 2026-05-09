@@ -10,6 +10,13 @@
 
   <div class="container">
 <img class="header-img" src="prgm-khatm.jpg">
+
+<div class="tabs">
+  <button class="tab" onclick="setTab(this, 'review')"><a href="review.html">المراجعة</a></button>
+  <button class="tab" onclick="setTab(this, 'memorize')">الحفظ</button>
+  <button class="tab active" onclick="setTab(this, 'wird')">الورد</button>
+</div>
+
     <!-- PROGRESS SYSTEM -->
 <div class="progress-section">
 
@@ -39,10 +46,27 @@
       </div>
     </div><br><br>
     <button id="resetBtn"> إعادة تعيين الكل</button>
+
+    
+
     <footer>
+      <span>ألا بذكر الله تطمئن القلوب</span>
       <p>Made with salsabil  — Khatma 💙.</p>
     </footer>
   </div>
+
+  <div id="athmanModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <h3 id="modalTitle"></h3>
+        <p id="modalRange"></p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="athmanList" class="athman-list"></div>
+  </div>
+</div>
 
   <script src="script.js"></script>
   

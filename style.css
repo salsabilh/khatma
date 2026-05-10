@@ -274,8 +274,11 @@ footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
   }
 
   .tracker {
-    flex-direction: column-reverse;;
+    flex-direction: column;
   }
+
+  .column.right { order: 1; }
+  .column.left  { order: 2; }
 
   .stats {
     flex-direction: column;

@@ -274,7 +274,7 @@ footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
   }
 
   .tracker {
-    flex-direction: column;
+    flex-direction: column-reverse;;
   }
 
   .stats {

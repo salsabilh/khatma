@@ -266,6 +266,98 @@ footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 }
 
 
+/* ===== MOTIVATIONAL TOAST ===== */
+.toast {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  background: linear-gradient(135deg, #e8f4ff, #ffffff);
+  color: #0c447c;
+  padding: 16px 24px 14px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  direction: rtl;
+  text-align: center;
+  max-width: 88%;
+  width: max-content;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  z-index: 99999;
+  box-shadow: 0 6px 28px rgba(0, 102, 204, 0.18);
+  border: 1.5px solid #c0d8ff;
+  line-height: 1.6;
+}
+
+.toast::before {
+  content: "💙";
+  display: block;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== KHATMA CONGRATULATIONS POPUP ===== */
+.khatma-box {
+  background: white;
+  border-radius: 24px;
+  padding: 36px 28px;
+  width: 360px;
+  max-width: 90%;
+  text-align: center;
+  direction: rtl;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  animation: popIn 0.5s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.khatma-stars {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.khatma-title {
+  color: #0066cc;
+  font-size: 22px;
+  margin: 0 0 16px;
+}
+
+.khatma-text {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.khatma-text p {
+  margin: 8px 0;
+}
+
+.khatma-btn {
+  /* hex */
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.khatma-btn:hover {
+  background: #004c99;
+}
 
 
 
@@ -278,8 +370,10 @@ footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
     flex-direction: column;
   }
 
-  .column.right { order: 1; }
+  .column.right { order: 1; } 
   .column.left  { order: 2; }
+
+
 
   .stats {
     flex-direction: column;

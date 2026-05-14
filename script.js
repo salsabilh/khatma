@@ -9,6 +9,98 @@ const rightGrid = document.getElementById("rightGrid");
 // Load saved progress from localStorage
 let savedProgress = JSON.parse(localStorage.getItem("khatmaProgress")) || {};
 
+// ─── Motivational Phrases (shown after each hizb) ────────────────────────────
+const hizbPhrases = [
+  "أحسنت! حزب أكمله لسانك، ونور يكتبه ربك ",
+  "ما شاء الله، خطوة نحو الله وخطوات نحو الجنة ",
+  "بارك الله في همتك، واصل فإن الله مع الصابرين ",
+  "قلبك يتلو، والملائكة تستمع وتدعو لك ",
+  "كل حزب تُكمله هو بذرة نور في قلبك ",
+  "ما أجمل أن يكون يومك مع كلام الله ",
+  "الله يراك وأنت تجاهد نفسك، فلا تتوقف ",
+  "واصل، فإن لكل آية نورًا يسكن القلب ",
+  "همتك عالية، ودعاؤك مستجاب إن شاء الله ",
+  "رزقك الله الإتمام والقبول والبركة ",
+  "كل صفحة من القرآن تُنير شيئًا في قلبك لا يراه أحد.",
+  "ابدأ ولو بآية… فالقليل الدائم أحب إلى الله.",
+  "القرآن ليس واجبًا يوميًا فقط، بل راحةٌ للروح.",
+  "حين تضيق بك الدنيا، افتح المصحف وستجد السكينة.",
+  "لا تؤجل وردك… فربما كانت آية اليوم سبب طمأنينتك.",
+  "مع كل حرف تقرؤه، تُكتب لك حسنات لا تضيع.",
+  "القرآن يُرتب الفوضى التي بداخلك دون أن تشعر.",
+  "اجعل للقرآن وقتًا ثابتًا، وسترى كيف تتغير أيامك.",
+  "ليس المهم أن تنهي بسرعة، المهم أن يعيش القرآن في قلبك.",
+  "كل يوم مع القرآن… خطوة أقرب إلى الله.",
+  "القرآن صديق لا يتركك في أوقات التعب.",
+  "اقرأ القرآن وكأن الله يُطمئن قلبك بكل آية.",
+  "دقائق مع القرآن قد تغيّر يومًا كاملًا.",
+  "القرآن شفاء للقلوب قبل أن يكون تلاوة بالألسن.",
+  "حتى إن تعبت، لا تترك مصحفك وحيدًا.",
+  "وردك اليومي هو استثمارك الحقيقي للآخرة.",
+  "من أحب القرآن، أحبّه الله وشرح صدره.",
+  "كل ختمة تبدأ بصفحة… فلا تستصغر البداية.",
+  "اقرأ لتطمئن، اقرأ لتُجبر، اقرأ لتقترب.",
+  "القرآن نور… ومن سار مع النور لا يضيع.",
+  "وردك اليوم = راحة قلبك ",
+  "لا تنسَ نصيب روحك من القرآن ",
+  "آية اليوم… قد تكون نجاتك.",
+  "اختم الدنيا بالقرآن قبل أن تختمك الدنيا.",
+  "دائمًا هناك طمأنينة تنتظرك بين صفحات المصحف.",
+  "اقرأ… فالقلب يصدأ والقرآن جلاؤه.",
+  "حتى الصفحة الواحدة تصنع فرقًا.",
+  "مع القرآن… الحياة أخف.",
+  "لا تترك يومك يمر بلا قرآن.",
+  "القرآن حياة لمن أراد الحياة.",
+];
+
+// ─── Khatma Congratulations Phrases ─────────────────────────────────────────
+const khatmaPhrases = [
+  "مبروك! أتممت ختمة القرآن الكريم 🎉",
+  "اللهم تقبّل منا واجعله نورًا لنا في الدنيا والآخرة 🤲",
+  "من ختم القرآن فقد أدرك خيرًا عظيمًا — هنيئًا لكِ هذا الفوز 💙",
+  "اللهم اجعل القرآن ربيع قلبها وجلاء حزنها 🌿",
+];
+
+// ─── Show Toast (motivational message) ───────────────────────────────────────
+function showToast(message) {
+  // Close modal first, then show toast above everything
+  closeModal();
+  setTimeout(() => {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 4500);
+  }, 350);
+}
+
+// ─── Show Khatma Popup ────────────────────────────────────────────────────────
+function showKhatmaPopup() {
+  const overlay = document.getElementById("khatmaModal");
+  const textEl = document.getElementById("khatmaText");
+  // Pick 2 random phrases to combine
+  const line1 = khatmaPhrases[0];
+  const line2 = khatmaPhrases[Math.floor(Math.random() * (khatmaPhrases.length - 1)) + 1];
+  textEl.innerHTML = `<p>${line1}</p><p>${line2}</p>`;
+  overlay.style.display = "flex";
+}
+
+function closeKhatmaModal() {
+  document.getElementById("khatmaModal").style.display = "none";
+}
+
+// ─── Check if all 60 hizbs are done ──────────────────────────────────────────
+function checkKhatmaComplete() {
+  const total = 60;
+  const completed = Object.keys(savedProgress).filter(k => {
+    const p = savedProgress[k];
+    if (typeof p === "boolean") return p;
+    return p && p.athman && p.athman.every(v => v);
+  }).length;
+  if (completed === total) {
+    setTimeout(() => showKhatmaPopup(), 600);
+  }
+}
+
 // ─── Hizb boundaries data ───────────────────────────────────────────────────
 const hizbData = {
   1:  { start: "الفاتحة 1",     end: "البقرة 74" },
@@ -73,12 +165,11 @@ const hizbData = {
   60: { start: "الأعلى 1",      end: "الناس 6" },
 };
 
-// ─── Progress bar (GLOBAL — accessible from everywhere) ─────────────────────
+// ─── Progress bar ─────────────────────────────────────────────────────────────
 function updateProgress() {
   const total = 60;
   const completed = Object.keys(savedProgress).filter(k => {
     const p = savedProgress[k];
-    // support old format (true/false) and new format ({ athman: [...] })
     if (typeof p === "boolean") return p;
     return p && p.athman && p.athman.every(v => v);
   }).length;
@@ -110,7 +201,7 @@ function createBoxes(grid, start, end) {
   for (let i = start; i <= end; i++) {
     const box = document.createElement("div");
     box.classList.add("box");
-    
+
     box.innerHTML = `
   <span class="box-num">${i}</span>
   <div class="box-info">
@@ -119,7 +210,6 @@ function createBoxes(grid, start, end) {
   </div>
 `;
 
-    // Restore saved state
     const prog = savedProgress[i];
     const isCompleted =
       (typeof prog === "boolean" && prog) ||
@@ -138,8 +228,6 @@ function createBoxes(grid, start, end) {
 createBoxes(rightGrid, 1, 30);
 createBoxes(leftGrid, 31, 60);
 
-
-
 // ─── Modal ───────────────────────────────────────────────────────────────────
 let activeBox = null;
 
@@ -150,7 +238,6 @@ function openModal(hizbNum, boxEl) {
   document.getElementById("modalTitle").textContent = `الحزب ${hizbNum}`;
   document.getElementById("modalRange").textContent = `${data.start} ← ${data.end}`;
 
-  // Init storage for this hizb if not exists or old format
   if (!savedProgress[hizbNum] || typeof savedProgress[hizbNum] === "boolean") {
     const wasCompleted = savedProgress[hizbNum] === true;
     savedProgress[hizbNum] = { athman: Array(8).fill(wasCompleted) };
@@ -159,7 +246,7 @@ function openModal(hizbNum, boxEl) {
   const list = document.getElementById("athmanList");
   list.innerHTML = "";
 
-  // ── Master "complete whole hizb" checkbox ──
+  // Master checkbox
   const masterItem = document.createElement("label");
   masterItem.classList.add("thumn-item", "thumn-master");
   const allDoneAlready = savedProgress[hizbNum].athman.every(v => v);
@@ -174,17 +261,23 @@ function openModal(hizbNum, boxEl) {
     localStorage.setItem("khatmaProgress", JSON.stringify(savedProgress));
     activeBox.classList.toggle("completed", val);
     updateProgress();
-    if (val) updateStreak();
-    openModal(hizbNum, activeBox); // refresh modal to sync all checkboxes
+    if (val) {
+      updateStreak();
+      // Show motivational toast
+      const phrase = hizbPhrases[Math.floor(Math.random() * hizbPhrases.length)];
+      showToast(phrase);
+      // Check if all done
+      checkKhatmaComplete();
+    }
+    openModal(hizbNum, activeBox);
   });
   list.appendChild(masterItem);
 
-  // ── Divider ──
   const divider = document.createElement("hr");
   divider.style.cssText = "border:none; border-top:1px solid #ddd; margin:4px 0";
   list.appendChild(divider);
 
-  // ── Individual athman ──
+  // Individual athman
   for (let t = 0; t < 8; t++) {
     const checked = savedProgress[hizbNum].athman[t];
     const item = document.createElement("label");
@@ -201,13 +294,19 @@ function openModal(hizbNum, boxEl) {
       item.classList.toggle("thumn-done", e.target.checked);
       localStorage.setItem("khatmaProgress", JSON.stringify(savedProgress));
 
-      // If all 8 done → mark hizb completed
       const allDone = savedProgress[hizbNum].athman.every(v => v);
       activeBox.classList.toggle("completed", allDone);
       updateProgress();
-      if (allDone) updateStreak();
 
-      // Sync master checkbox
+      if (allDone) {
+        updateStreak();
+        // Show motivational toast
+        const phrase = hizbPhrases[Math.floor(Math.random() * hizbPhrases.length)];
+        showToast(phrase);
+        // Check if all 60 done
+        checkKhatmaComplete();
+      }
+
       const masterCheckbox = list.querySelector(".thumn-master input");
       if (masterCheckbox) masterCheckbox.checked = allDone;
       const masterLabel = list.querySelector(".thumn-master");
@@ -225,7 +324,6 @@ function closeModal() {
   activeBox = null;
 }
 
-// Close modal when clicking outside the box
 document.getElementById("athmanModal").addEventListener("click", (e) => {
   if (e.target === document.getElementById("athmanModal")) closeModal();
 });
